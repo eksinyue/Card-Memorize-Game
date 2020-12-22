@@ -12,20 +12,16 @@ struct ContentView: View {
     var viewModel: EmojiMemoryGame
     
     var body: some View {
-        VStack() {
-            ForEach(0..<4) { index in
-                HStack() {
-                    ForEach(viewModel.cards) { card in
-                        CardView(card: card).onTapGesture {
-                            viewModel.choose(card: card)
-                        }
-                    }
+        HStack() {
+            ForEach(viewModel.cards.shuffled()) { card in
+                CardView(card: card).onTapGesture {
+                    viewModel.choose(card: card)
                 }
             }
         }
             .padding()
             .foregroundColor(Color.green)
-            .font(Font.largeTitle)
+            .font(viewModel.cards.count >= 5 ? Font.title : Font.largeTitle)
     }
 }
 
@@ -35,11 +31,16 @@ struct CardView: View {
     var body: some View {
         ZStack() {
             if !card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                RoundedRectangle(cornerRadius: 10.0)
+                    .fill(Color.white)
+                    .aspectRatio(2/3, contentMode: .fit)
+                RoundedRectangle(cornerRadius: 10.0)
+                    .stroke(lineWidth: 3)
+                    .aspectRatio(2/3, contentMode: .fit)
                 Text(card.content)
             } else {
                 RoundedRectangle(cornerRadius: 10.0).fill()
+                    .aspectRatio(2/3, contentMode: .fit)
             }
         }
     }
