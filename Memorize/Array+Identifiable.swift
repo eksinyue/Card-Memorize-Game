@@ -8,12 +8,13 @@
 import Foundation
 
 extension Array where Element: Identifiable {
-    func firstIndex(matching item: Element) -> Int {
+    
+    func firstIndex(matching item: Element) -> Int? { // Optional<Int>
         for index in 0..<self.count {
             if self[index].id == item.id {
                 return index
             }
         }
-        return -1 // TODO: repeated code as in model
+        return nil // TODO: repeated code as in model
     }
 }
