@@ -13,7 +13,18 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack {
-            TopBarView(name: viewModel.themeName)
+            HStack(alignment: .center) {
+                Text(viewModel.themeName)
+                    .font(.system(size: 23, weight: .bold, design: .default))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                Button("New Game") {
+                    viewModel.startNewGame()
+                }
+
+                .padding(.trailing)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }.frame(maxWidth: .infinity)
             
             Grid(viewModel.cards) { card in
                 CardView(card: card).onTapGesture {
@@ -26,25 +37,6 @@ struct EmojiMemoryGameView: View {
         .foregroundColor(viewModel.themeColor)
         .buttonStyle(OutlinedButton(color: viewModel.themeColor))
         
-    }
-}
-
-struct TopBarView: View {
-    var name: String
-    
-    var body: some View {
-        HStack(alignment: .center) {
-            Text(name)
-                .font(.system(size: 23, weight: .bold, design: .default))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-            Button("New Game") {
-                print("hello")
-            }
-            
-            .padding(.trailing)
-            .frame(maxWidth: .infinity, alignment: .trailing)
-        }.frame(maxWidth: .infinity)
     }
 }
 
