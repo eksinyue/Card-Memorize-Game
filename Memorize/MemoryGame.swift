@@ -11,7 +11,8 @@ import SwiftUI
 struct MemoryGame<CardContent> where CardContent: Equatable{
 
     var theme: Theme
-    var cards: Array<Card>
+    var cards: [Card]
+    var cardsHasBeenSeen: [CardContent] = []
     var score: Int = 0
     
     var oneAndOnlyChosenCardIndex: Int? {
@@ -28,15 +29,27 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
     
     mutating func choose(card: Card) {
         if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched  {
-            if let faceUpCardIndex = oneAndOnlyChosenCardIndex {
-                if cards[faceUpCardIndex].content == cards[chosenIndex].content {
+            if let faceUpCardIndex = oneAndOnlyChosenCardIndex { // secondCard
+                if cards[faceUpCardIndex].content == cards[chosenIndex].content { // match
                     cards[faceUpCardIndex].isMatched = true
                     cards[chosenIndex].isMatched = true
+                    score += 2
+                } else { // mismatch
+                    checkIfCardHasBeenSeen(card.content)
+                    checkIfCardHasBeenSeen(cards[faceUpCardIndex].content)
                 }
                 cards[chosenIndex].isFaceUp = true
-            } else {
+            } else { // firstCard
                 oneAndOnlyChosenCardIndex = chosenIndex
             }
+        }
+    }
+    
+    mutating func checkIfCardHasBeenSeen(_ card: CardContent) {
+        if cardsHasBeenSeen.contains(card) {
+            score -= 1
+        } else {
+            cardsHasBeenSeen.append(card)
         }
     }
     

@@ -94,7 +94,6 @@ struct endGameView: View {
         .font(.system(size: 23, weight: .bold, design: .default))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
 }
 
 
