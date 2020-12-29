@@ -13,30 +13,42 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack {
-            HStack(alignment: .center) {
-                Text(viewModel.themeName)
-                    .font(.system(size: 23, weight: .bold, design: .default))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading)
-                Button("New Game") {
-                    viewModel.startNewGame()
+            TopBarView(viewModel: viewModel)
+            Spacer()
+            if viewModel.hasEnded {
+                endGameView(score: viewModel.score)
+            } else {
+                Grid(viewModel.cards) { card in
+                    CardView(card: card).onTapGesture {
+                        viewModel.choose(card: card)
+                    }
+                    .padding(5)
                 }
-
-                .padding(.trailing)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-            }.frame(maxWidth: .infinity)
-            
-            Grid(viewModel.cards) { card in
-                CardView(card: card).onTapGesture {
-                    viewModel.choose(card: card)
-                }
-                .padding(5)
             }
         }
         .padding()
         .foregroundColor(viewModel.themeColor)
         .buttonStyle(OutlinedButton(color: viewModel.themeColor))
-        
+
+    }
+}
+
+struct TopBarView: View {
+    var viewModel: EmojiMemoryGame
+    
+    var body: some View {
+        HStack {
+            Text(viewModel.themeName)
+                .font(.system(size: 23, weight: .bold, design: .default))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
+            Button("New Game") {
+                viewModel.startNewGame()
+            }
+            
+            .padding(.trailing)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }.frame(maxWidth: .infinity)
     }
 }
 
@@ -67,6 +79,22 @@ struct CardView: View {
     func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.75
     }
+}
+
+struct endGameView: View {
+    var score: Int
+    
+    var body: some View {
+        VStack (spacing: 15) {
+            Text("Congratulations!")
+            Text("Your total score is")
+            Text("\(score) points")
+                .font(.system(size: 30, weight: .bold, design: .default))
+        }
+        .font(.system(size: 23, weight: .bold, design: .default))
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
 }
 
 
