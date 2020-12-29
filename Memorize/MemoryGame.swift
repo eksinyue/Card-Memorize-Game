@@ -17,7 +17,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
     
     var oneAndOnlyChosenCardIndex: Int? {
         get { cards.indices.filter {index in cards[index].isFaceUp}.only }
-        
         set {
             for index in cards.indices { cards[index].isFaceUp = index == newValue }
         }
@@ -69,6 +68,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
         var name: String
         var color: Color
         var contentArr: [CardContent]
+        var numberOfPairsOfCards: Int?
+        
+        init(name: String, numberOfPairsOfCards: Int? = nil, color: Color, cards: [CardContent]) {
+            self.name = name
+            self.numberOfPairsOfCards = numberOfPairsOfCards
+            self.color = color
+            self.contentArr = cards
+        }
     }
     
     struct Card: Identifiable {

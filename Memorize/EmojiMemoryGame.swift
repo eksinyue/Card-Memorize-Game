@@ -31,23 +31,23 @@ class EmojiMemoryGame: ObservableObject {
         var themes: [MemoryGame<String>.Theme] = []
         
         themes.append(MemoryGame<String>.Theme(name: "Greenie Green",
-                            color: Color.green, contentArr: ["🎄", "🥦", "🐢", "🧩", "🧤", "🪴", "🦖", "☘️", "🌳", "🦚", "🦠", "🥬", "🚛", "🔫", "🥑"]))
+                            color: Color.green, cards: ["🎄", "🥦", "🐢", "🧩", "🧤", "🪴", "🦖", "☘️", "🌳", "🦚", "🦠", "🥬", "🚛", "🔫", "🥑"]))
         themes.append(MemoryGame<String>.Theme(name: "Mood",
-                            color: Color.yellow, contentArr: ["🤣", "☺️", "🤪", "🥸", "🤩", "🥳", "😭", "😤", "🥺", "🤯", "🤥", "🙄", "😴", "🤮", "🤧"]))
+                            color: Color.yellow, cards: ["🤣", "☺️", "🤪", "🥸", "🤩", "🥳", "😭", "😤", "🥺", "🤯", "🤥", "🙄", "😴", "🤮", "🤧"]))
         themes.append(MemoryGame<String>.Theme(name: "Zoo",
-                            color: Color.orange, contentArr: ["🐶", "🐨", "🐷", "🐒", "🐥", "🐝", "🦕", "🦭", "🦧", "🐘", "🐩", "🦔", "🦥", "🐳", "🐰"]))
+                            color: Color.orange, cards: ["🐶", "🐨", "🐷", "🐒", "🐥", "🐝", "🦕", "🦭", "🦧", "🐘", "🐩", "🦔", "🦥", "🐳", "🐰"]))
         themes.append(MemoryGame<String>.Theme(name: "Transportation",
-                            color: Color.blue, contentArr: ["✈️", "🛩", "🚀", "🛳", "⛴", "🚊", "🚔", "🛻", "🚎", "🚙", "🚐", "🚆", "🚲", "🛴", "🦽"]))
-        themes.append(MemoryGame<String>.Theme(name: "Flags",
-                            color: Color.red, contentArr: ["🇯🇵", "🇭🇰", "🇬🇪", "🇫🇷", "🇨🇳", "🇨🇦", "🇵🇪", "🇧🇪", "🇳🇴", "🇲🇾", "🇸🇬", "🇰🇷", "🇹🇼", "🇹🇷", "🇺🇸"]))
-        themes.append(MemoryGame<String>.Theme(name: "Numbers",
-                            color: Color.gray, contentArr: ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟", "#️⃣", "*️⃣", "⏺", "🔼"]))
+                            color: Color.blue, cards: ["✈️", "🛩", "🚀", "🛳", "⛴", "🚊", "🚔", "🛻", "🚎", "🚙", "🚐", "🚆", "🚲", "🛴", "🦽"]))
+        themes.append(MemoryGame<String>.Theme(name: "Flags", numberOfPairsOfCards: 4,
+                            color: Color.red, cards: ["🇯🇵", "🇭🇰", "🇬🇪", "🇫🇷", "🇨🇳", "🇨🇦", "🇵🇪", "🇧🇪", "🇳🇴", "🇲🇾", "🇸🇬", "🇰🇷", "🇹🇼", "🇹🇷", "🇺🇸"]))
+        themes.append(MemoryGame<String>.Theme(name: "Numbers", numberOfPairsOfCards: 6,
+                            color: Color.gray, cards: ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟", "#️⃣", "*️⃣", "⏺", "🔼"]))
         
-        let themeIndex = Int.random(in: 0..<themes.count)
-        let emojis = themes[themeIndex].contentArr.shuffled()
-        let numberOfPairsOfCards = Int.random(in: 2...6)
+        let theme = themes[Int.random(in: 0..<themes.count)]
+        let emojis = theme.contentArr.shuffled()
+        let numberOfPairsOfCards = theme.numberOfPairsOfCards ?? Int.random(in: 2...6)
         
-        return MemoryGame<String>(theme: themes[themeIndex], numberOfPairsOfCards: numberOfPairsOfCards ) { pairIndex in
+        return MemoryGame<String>(theme: theme, numberOfPairsOfCards: numberOfPairsOfCards ) { pairIndex in
             return emojis[pairIndex]
         }
     }
