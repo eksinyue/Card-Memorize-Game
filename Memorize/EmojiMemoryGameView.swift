@@ -17,8 +17,8 @@ struct EmojiMemoryGameView: View {
             CardView(card: card).onTapGesture {
                 viewModel.choose(card: card)
             }
-            .aspectRatio(2/3, contentMode: .fit)
-            .padding()
+//            .aspectRatio(2/3, contentMode: .fit)
+            .padding(5)
         }
             .padding()
             .foregroundColor(Color.green)
@@ -31,13 +31,13 @@ struct CardView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack() {
-                if !card.isFaceUp {
+                if card.isFaceUp {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(Color.white)
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(lineWidth: edgeLineWidth)
                     Text(card.content)
-                } else {
+                } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: cornerRadius).fill()
                 }
             }
