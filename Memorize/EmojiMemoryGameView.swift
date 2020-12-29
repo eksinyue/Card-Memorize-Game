@@ -34,7 +34,7 @@ struct EmojiMemoryGameView: View {
 }
 
 struct TopBarView: View {
-    var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
         HStack {

@@ -15,6 +15,6 @@ extension Array where Element: Identifiable {
                 return index
             }
         }
-        return nil // TODO: repeated code as in model
+        return nil
     }
 }
