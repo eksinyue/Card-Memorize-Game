@@ -12,15 +12,39 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        
-        Grid(viewModel.cards) { card in
-            CardView(card: card).onTapGesture {
-                viewModel.choose(card: card)
+        VStack {
+            TopBarView(name: viewModel.themeName)
+            
+            Grid(viewModel.cards) { card in
+                CardView(card: card).onTapGesture {
+                    viewModel.choose(card: card)
+                }
+                .padding(5)
             }
-            .padding(5)
         }
-            .padding()
-            .foregroundColor(viewModel.themeColor)
+        .padding()
+        .foregroundColor(viewModel.themeColor)
+        .buttonStyle(OutlinedButton(color: viewModel.themeColor))
+        
+    }
+}
+
+struct TopBarView: View {
+    var name: String
+    
+    var body: some View {
+        HStack(alignment: .center) {
+            Text(name)
+                .font(.system(size: 23, weight: .bold, design: .default))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
+            Button("New Game") {
+                print("hello")
+            }
+            
+            .padding(.trailing)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }.frame(maxWidth: .infinity)
     }
 }
 
