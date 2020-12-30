@@ -16,6 +16,7 @@
 		679515DD259B6838007C67B4 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679515DC259B6838007C67B4 /* Array+Identifiable.swift */; };
 		679515E0259B75D6007C67B4 /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679515DF259B75D6007C67B4 /* Array+Only.swift */; };
 		679515F2259B904F007C67B4 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679515F1259B904F007C67B4 /* OutlinedButton.swift */; };
+		679515F6259CE622007C67B4 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679515F5259CE622007C67B4 /* Pie.swift */; };
 		67CDA55B2590F9CF00AC57FC /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDA55A2590F9CF00AC57FC /* MemoryGame.swift */; };
 		67CDA55E2590FBD500AC57FC /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDA55D2590FBD500AC57FC /* EmojiMemoryGame.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		679515DC259B6838007C67B4 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
 		679515DF259B75D6007C67B4 /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		679515F1259B904F007C67B4 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		679515F5259CE622007C67B4 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		67CDA55A2590F9CF00AC57FC /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoryGame.swift; path = Memorize/MemoryGame.swift; sourceTree = SOURCE_ROOT; };
 		67CDA55D2590FBD500AC57FC /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +70,7 @@
 			children = (
 				671BB48F2590D62500B6D0C4 /* MemorizeApp.swift */,
 				671BB4912590D62500B6D0C4 /* EmojiMemoryGameView.swift */,
+				679515F5259CE622007C67B4 /* Pie.swift */,
 				679515F1259B904F007C67B4 /* OutlinedButton.swift */,
 				679515D22593370A007C67B4 /* Grid.swift */,
 				679515DC259B6838007C67B4 /* Array+Identifiable.swift */,
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679515F6259CE622007C67B4 /* Pie.swift in Sources */,
 				67CDA55B2590F9CF00AC57FC /* MemoryGame.swift in Sources */,
 				671BB4922590D62500B6D0C4 /* EmojiMemoryGameView.swift in Sources */,
 				671BB4902590D62500B6D0C4 /* MemorizeApp.swift in Sources */,

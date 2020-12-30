@@ -58,11 +58,7 @@ struct CardView: View {
         GeometryReader { geometry in
             ZStack() {
                 if card.isFaceUp {
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(Color.white)
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(lineWidth: edgeLineWidth)
-                    Text(card.content)
+                    cardFaceUp()
                 } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: cornerRadius).fill()
                 }
@@ -71,12 +67,23 @@ struct CardView: View {
         }
     }
     
+    @ViewBuilder
+    private func cardFaceUp() -> some View {
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(Color.white)
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .stroke(lineWidth: edgeLineWidth)
+        Pie(startAngle: Angle.degrees(-90), endAngle: Angle.degrees(30))
+            .padding(5).opacity(0.4)
+        Text(card.content)
+    }
+    
     // MARK: - Drawing Constants
     
     private let cornerRadius: CGFloat = 10.0
     private let edgeLineWidth: CGFloat = 3
     private func fontSize(for size: CGSize) -> CGFloat {
-        min(size.width, size.height) * 0.75
+        min(size.width, size.height) * 0.65
     }
 }
 
@@ -95,18 +102,11 @@ struct endGameView: View {
     }
 }
 
-
-
-
-
-
-
-
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards[0])
+        return EmojiMemoryGameView(viewModel: game)
     }
 }
  
