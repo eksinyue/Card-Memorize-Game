@@ -45,7 +45,6 @@ struct TopBarView: View {
             Button("New Game") {
                 viewModel.startNewGame()
             }
-            
             .padding(.trailing)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }.frame(maxWidth: .infinity)
@@ -74,9 +73,9 @@ struct CardView: View {
     
     // MARK: - Drawing Constants
     
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3
-    func fontSize(for size: CGSize) -> CGFloat {
+    private let cornerRadius: CGFloat = 10.0
+    private let edgeLineWidth: CGFloat = 3
+    private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.75
     }
 }
